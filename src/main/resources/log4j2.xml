@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="OFF">
+    <Properties>
+        <!-- 按日志级别高亮日志信息 -->
+        <!-- %highlight{ 内容 }{FATAL=bright black, ERROR=bright red, WARN=bright yellow, INFO=blue, DEBUG=bright black, TRACE=bright black} -->
+        <Property name="rawPattern">%highlight{[%-5level][%d{yyyy-MM-dd HH:mm:ss.SSS}]%l}{FATAL=bright black, ERROR=bright red, WARN=bright yellow, INFO=blue, DEBUG=bright black, TRACE=bright black}%message%n</Property>
+        <!-- 日志格式 -->
+        <Property name="logPattern">[%-5level][%d{yyyy-MM-dd HH:mm:ss.SSS}]%l%message%n</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- 控制台配置 -->
+        <Console name="console"
+                 target="SYSTEM_OUT">
+            <PatternLayout pattern="${logPattern}"/>
+            <Filters>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </Console>
+
+        <!-- error日志 -->
+        <RollingFile name="errorRollingFile"
+                     fileName="../logs/error.log"
+                     filePattern="../logs/error/%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="${logPattern}"/>
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+
+        <!-- info日志 -->
+        <RollingFile name="infoRollingFile"
+                     fileName="../logs/info.log"
+                     filePattern="../logs/info/%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="${logPattern}"/>
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+
+        <!-- debug日志 -->
+        <RollingFile name="debugRollingFile"
+                     fileName="../logs/debug.log"
+                     filePattern="../logs/debug/%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="${logPattern}"/>
+            <Filters>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+
+        <!-- all日志 -->
+        <RollingFile name="allRollingFile"
+                     fileName="../logs/all.log"
+                     filePattern="../logs/all/%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="${logPattern}"/>
+            <Filters>
+                <ThresholdFilter level="ALL" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- 日志级别有：OFF、FATAL、ERROR、WARN、INFO、DEBUG、TRACE、ALL -->
+        <!-- 同步日志 -->
+        <Root level="ALL">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="errorRollingFile"/>
+            <AppenderRef ref="infoRollingFile"/>
+            <AppenderRef ref="debugRollingFile"/>
+            <AppenderRef ref="allRollingFile"/>
+        </Root>
+        <!-- 异步日志 -->
+        <!--<AsyncRoot level="ALL"
+                   includeLocation="true">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="errorRollingFile"/>
+            <AppenderRef ref="infoRollingFile"/>
+            <AppenderRef ref="debugRollingFile"/>
+            <AppenderRef ref="allRollingFile"/>
+        </AsyncRoot>-->
+
+        <Logger name="org.nutz"
+                level="ALL"
+                additivity="false">
+            <AppenderRef ref="allRollingFile"/>
+        </Logger>
+        <Logger name="org.nutz.dao.impl.sql.run.NutDaoExecutor"
+                level="DEBUG"
+                additivity="false">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="debugRollingFile"/>
+            <AppenderRef ref="allRollingFile"/>
+        </Logger>
+        <Logger name="org.springframework"
+                level="ALL"
+                additivity="false">
+            <AppenderRef ref="allRollingFile"/>
+        </Logger>
+        <Logger name="org.apache"
+                level="ALL"
+                additivity="false">
+            <AppenderRef ref="allRollingFile"/>
+        </Logger>
+        <Logger name="net.bull"
+                level="ALL"
+                additivity="false">
+            <AppenderRef ref="allRollingFile"/>
+        </Logger>
+        <Logger name="org.mybatis"
+                level="ALL"
+                additivity="false">
+            <AppenderRef ref="allRollingFile"/>
+        </Logger>
+        <Logger name="com.alibaba"
+                level="ALL"
+                additivity="false">
+            <AppenderRef ref="allRollingFile"/>
+        </Logger>
+        <Logger name="net.sf"
+                level="ALL"
+                additivity="false">
+            <AppenderRef ref="allRollingFile"/>
+        </Logger>
+        <Logger name="org.quartz"
+                level="ALL"
+                additivity="false">
+            <AppenderRef ref="allRollingFile"/>
+        </Logger>
+    </Loggers>
+</Configuration>

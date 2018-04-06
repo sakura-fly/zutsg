@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zutsg.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.zutsg.pojo.User" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="role" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="reason" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="info" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="image" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="header" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+
+
+  <sql id="Base_Column_List" >
+    id, role, phone, status, reason, info, password, image, header, name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByPhone" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where phone = #{phone,jdbcType=VARCHAR}
+  </select>
+
+
+
+
+
+
+
+  <select id="selectByUserPage" resultMap="BaseResultMap" parameterType="com.zutsg.pojo.User" >
+    select
+    <include refid="Base_Column_List" />
+    from user where 1=1
+    <if test="id != null" >
+     and id=#{id,jdbcType=INTEGER}
+    </if>
+    <if test="role != null" >
+      and role=#{role,jdbcType=INTEGER}
+    </if>
+    <if test="phone != null" >
+     and phone=#{phone,jdbcType=VARCHAR}
+    </if>
+    <if test="status != null" >
+      and status=#{status,jdbcType=INTEGER}
+    </if>
+    <if test="reason != null" >
+      and  reason=#{reason,jdbcType=VARCHAR}
+    </if>
+    <if test="info != null" >
+      and  info=#{info,jdbcType=VARCHAR}
+    </if>
+    <if test="password != null" >
+      and  password=#{password,jdbcType=VARCHAR}
+    </if>
+    <if test="image != null" >
+      and  image=#{image,jdbcType=VARCHAR}
+    </if>
+    <if test="header != null" >
+      and header=#{header,jdbcType=VARCHAR}
+    </if>
+    <if test="name != null" >
+      and name=#{name,jdbcType=VARCHAR}
+    </if>
+    limit ${pageBean.page},${pageBean.pageSize}
+
+  </select>
+  <select id="selectByUser" resultMap="BaseResultMap" parameterType="com.zutsg.pojo.User" >
+    select
+    <include refid="Base_Column_List" />
+    from user where 1=1
+    <if test="id != null" >
+      and id=#{id,jdbcType=INTEGER}
+    </if>
+    <if test="role != null" >
+      and role=#{role,jdbcType=INTEGER}
+    </if>
+    <if test="phone != null" >
+      and phone=#{phone,jdbcType=VARCHAR}
+    </if>
+    <if test="status != null" >
+      and status=#{status,jdbcType=INTEGER}
+    </if>
+    <if test="reason != null" >
+      and  reason=#{reason,jdbcType=VARCHAR}
+    </if>
+    <if test="info != null" >
+      and  info=#{info,jdbcType=VARCHAR}
+    </if>
+    <if test="password != null" >
+      and  password=#{password,jdbcType=VARCHAR}
+    </if>
+    <if test="image != null" >
+      and  image=#{image,jdbcType=VARCHAR}
+    </if>
+    <if test="header != null" >
+      and header=#{header,jdbcType=VARCHAR}
+    </if>
+    <if test="name != null" >
+      and name=#{name,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.zutsg.pojo.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="info != null" >
+        info,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="header != null" >
+        header,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        0,
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null" >
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="header != null" >
+        #{header,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zutsg.pojo.User" >
+    update user
+    <set >
+      <if test="role != null" >
+        role = #{role,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null" >
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="header != null" >
+        header = #{header,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

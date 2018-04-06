@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zutsg.dao.GardenNewsMapper" >
+  <resultMap id="BaseResultMap" type="com.zutsg.pojo.GardenNews" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="cotent" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="isTop" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="image" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cotent, isTop, userId, image
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from garden_news
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from garden_news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zutsg.pojo.GardenNews" >
+    insert into garden_news (id, cotent, isTop, 
+      userId, image)
+    values (#{id,jdbcType=INTEGER}, #{cotent,jdbcType=VARCHAR}, #{istop,jdbcType=INTEGER}, 
+      #{userid,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zutsg.pojo.GardenNews" >
+    insert into garden_news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cotent != null" >
+        cotent,
+      </if>
+      <if test="istop != null" >
+        isTop,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cotent != null" >
+        #{cotent,jdbcType=VARCHAR},
+      </if>
+      <if test="istop != null" >
+        #{istop,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zutsg.pojo.GardenNews" >
+    update garden_news
+    <set >
+      <if test="cotent != null" >
+        cotent = #{cotent,jdbcType=VARCHAR},
+      </if>
+      <if test="istop != null" >
+        isTop = #{istop,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zutsg.pojo.GardenNews" >
+    update garden_news
+    set cotent = #{cotent,jdbcType=VARCHAR},
+      isTop = #{istop,jdbcType=INTEGER},
+      userId = #{userid,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
