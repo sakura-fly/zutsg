@@ -1,108 +1,48 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zutsg.dao.GardenGeneralMapper" >
-  <resultMap id="BaseResultMap" type="com.zutsg.pojo.GardenGeneral" >
-    <constructor >
-      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="gardenIntroduction" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="organizationSet" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="inGardenCondition" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="inGardenFlow" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="inGardenKnow" jdbcType="VARCHAR" javaType="java.lang.String" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zutsg.dao.GardenGeneralMapper">
+  <resultMap id="BaseResultMap" type="com.zutsg.pojo.GardenGeneral">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="gardenIntroduction" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="organizationSet" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="inGardenCondition" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="inGardenFlow" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="inGardenKnow" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, gardenIntroduction, organizationSet, inGardenCondition, inGardenFlow, inGardenKnow
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from garden_general
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from garden_general
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.zutsg.pojo.GardenGeneral" >
-    insert into garden_general (id, gardenIntroduction, organizationSet, 
-      inGardenCondition, inGardenFlow, inGardenKnow
-      )
-    values (#{id,jdbcType=INTEGER}, #{gardenintroduction,jdbcType=VARCHAR}, #{organizationset,jdbcType=INTEGER}, 
-      #{ingardencondition,jdbcType=VARCHAR}, #{ingardenflow,jdbcType=VARCHAR}, #{ingardenknow,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.zutsg.pojo.GardenGeneral" >
-    insert into garden_general
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="gardenintroduction != null" >
-        gardenIntroduction,
-      </if>
-      <if test="organizationset != null" >
-        organizationSet,
-      </if>
-      <if test="ingardencondition != null" >
-        inGardenCondition,
-      </if>
-      <if test="ingardenflow != null" >
-        inGardenFlow,
-      </if>
-      <if test="ingardenknow != null" >
-        inGardenKnow,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="gardenintroduction != null" >
-        #{gardenintroduction,jdbcType=VARCHAR},
-      </if>
-      <if test="organizationset != null" >
-        #{organizationset,jdbcType=INTEGER},
-      </if>
-      <if test="ingardencondition != null" >
-        #{ingardencondition,jdbcType=VARCHAR},
-      </if>
-      <if test="ingardenflow != null" >
-        #{ingardenflow,jdbcType=VARCHAR},
-      </if>
-      <if test="ingardenknow != null" >
-        #{ingardenknow,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zutsg.pojo.GardenGeneral" >
+
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.zutsg.pojo.GardenGeneral">
     update garden_general
-    <set >
-      <if test="gardenintroduction != null" >
-        gardenIntroduction = #{gardenintroduction,jdbcType=VARCHAR},
+    <set>
+      <if test="gardenIntroduction != null">
+        gardenIntroduction = #{gardenIntroduction,jdbcType=VARCHAR},
       </if>
-      <if test="organizationset != null" >
-        organizationSet = #{organizationset,jdbcType=INTEGER},
+      <if test="organizationSet != null">
+        organizationSet = #{organizationSet,jdbcType=INTEGER},
       </if>
-      <if test="ingardencondition != null" >
-        inGardenCondition = #{ingardencondition,jdbcType=VARCHAR},
+      <if test="inGardenCondition != null">
+        inGardenCondition = #{inGardenCondition,jdbcType=VARCHAR},
       </if>
-      <if test="ingardenflow != null" >
-        inGardenFlow = #{ingardenflow,jdbcType=VARCHAR},
+      <if test="inGardenFlow != null">
+        inGardenFlow = #{inGardenFlow,jdbcType=VARCHAR},
       </if>
-      <if test="ingardenknow != null" >
-        inGardenKnow = #{ingardenknow,jdbcType=VARCHAR},
+      <if test="inGardenKnow != null">
+        inGardenKnow = #{inGardenKnow,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zutsg.pojo.GardenGeneral" >
-    update garden_general
-    set gardenIntroduction = #{gardenintroduction,jdbcType=VARCHAR},
-      organizationSet = #{organizationset,jdbcType=INTEGER},
-      inGardenCondition = #{ingardencondition,jdbcType=VARCHAR},
-      inGardenFlow = #{ingardenflow,jdbcType=VARCHAR},
-      inGardenKnow = #{ingardenknow,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
 </mapper>
