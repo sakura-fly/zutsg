@@ -3,23 +3,23 @@ package com.zutsg.pojo;
 public class GardenGeneral {
     private Integer id;
 
-    private String gardenintroduction;
+    private String gardenIntroduction;
 
-    private Integer organizationset;
+    private Integer organizationSet;
 
-    private String ingardencondition;
+    private String inGardenCondition;
 
-    private String ingardenflow;
+    private String inGardenFlow;
 
-    private String ingardenknow;
+    private String inGardenKnow;
 
-    public GardenGeneral(Integer id, String gardenintroduction, Integer organizationset, String ingardencondition, String ingardenflow, String ingardenknow) {
+    public GardenGeneral(Integer id, String gardenIntroduction, Integer organizationSet, String inGardenCondition, String inGardenFlow, String inGardenKnow) {
         this.id = id;
-        this.gardenintroduction = gardenintroduction;
-        this.organizationset = organizationset;
-        this.ingardencondition = ingardencondition;
-        this.ingardenflow = ingardenflow;
-        this.ingardenknow = ingardenknow;
+        this.gardenIntroduction = gardenIntroduction;
+        this.organizationSet = organizationSet;
+        this.inGardenCondition = inGardenCondition;
+        this.inGardenFlow = inGardenFlow;
+        this.inGardenKnow = inGardenKnow;
     }
 
     public GardenGeneral() {
@@ -34,43 +34,43 @@ public class GardenGeneral {
         this.id = id;
     }
 
-    public String getGardenintroduction() {
-        return gardenintroduction;
+    public String getGardenIntroduction() {
+        return gardenIntroduction;
     }
 
-    public void setGardenintroduction(String gardenintroduction) {
-        this.gardenintroduction = gardenintroduction == null ? null : gardenintroduction.trim();
+    public void setGardenIntroduction(String gardenIntroduction) {
+        this.gardenIntroduction = gardenIntroduction;
     }
 
-    public Integer getOrganizationset() {
-        return organizationset;
+    public Integer getOrganizationSet() {
+        return organizationSet;
     }
 
-    public void setOrganizationset(Integer organizationset) {
-        this.organizationset = organizationset;
+    public void setOrganizationSet(Integer organizationSet) {
+        this.organizationSet = organizationSet;
     }
 
-    public String getIngardencondition() {
-        return ingardencondition;
+    public String getInGardenCondition() {
+        return inGardenCondition;
     }
 
-    public void setIngardencondition(String ingardencondition) {
-        this.ingardencondition = ingardencondition == null ? null : ingardencondition.trim();
+    public void setInGardenCondition(String inGardenCondition) {
+        this.inGardenCondition = inGardenCondition;
     }
 
-    public String getIngardenflow() {
-        return ingardenflow;
+    public String getInGardenFlow() {
+        return inGardenFlow;
     }
 
-    public void setIngardenflow(String ingardenflow) {
-        this.ingardenflow = ingardenflow == null ? null : ingardenflow.trim();
+    public void setInGardenFlow(String inGardenFlow) {
+        this.inGardenFlow = inGardenFlow;
     }
 
-    public String getIngardenknow() {
-        return ingardenknow;
+    public String getInGardenKnow() {
+        return inGardenKnow;
     }
 
-    public void setIngardenknow(String ingardenknow) {
-        this.ingardenknow = ingardenknow == null ? null : ingardenknow.trim();
+    public void setInGardenKnow(String inGardenKnow) {
+        this.inGardenKnow = inGardenKnow;
     }
 }

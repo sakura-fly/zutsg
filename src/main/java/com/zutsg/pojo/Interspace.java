@@ -1,5 +1,10 @@
 package com.zutsg.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zutsg.unti.PageBean;
+
+import java.util.Date;
+
 public class Interspace {
     private Integer id;
 
@@ -11,15 +16,49 @@ public class Interspace {
 
     private String address;
 
-    private Integer topnum;
+    private Integer topNum;
 
-    public Interspace(Integer id, String title, String image, String cotent, String address, Integer topnum) {
+    private Integer userId;
+
+    private User user;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    private Date createTime;
+
+    private PageBean pageBean;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public PageBean getPageBean() {
+        return pageBean;
+    }
+
+    public void setPageBean(PageBean pageBean) {
+        this.pageBean = pageBean;
+    }
+
+    public Interspace(Integer id, String title, String image, String cotent, String address, Integer topNum, Integer userId,Date createTime) {
         this.id = id;
         this.title = title;
         this.image = image;
         this.cotent = cotent;
         this.address = address;
-        this.topnum = topnum;
+        this.topNum = topNum;
+        this.userId = userId;
+        this.createTime = createTime;
     }
 
     public Interspace() {
@@ -66,11 +105,19 @@ public class Interspace {
         this.address = address == null ? null : address.trim();
     }
 
-    public Integer getTopnum() {
-        return topnum;
+    public Integer getTopNum() {
+        return topNum;
     }
 
-    public void setTopnum(Integer topnum) {
-        this.topnum = topnum;
+    public void setTopNum(Integer topNum) {
+        this.topNum = topNum;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

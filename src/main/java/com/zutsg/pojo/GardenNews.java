@@ -1,22 +1,59 @@
 package com.zutsg.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zutsg.unti.PageBean;
+
+import java.util.Date;
+
 public class GardenNews {
     private Integer id;
 
     private String cotent;
 
-    private Integer istop;
+    private Integer isTop;
 
-    private Integer userid;
+    private Integer userId;
 
     private String image;
 
-    public GardenNews(Integer id, String cotent, Integer istop, Integer userid, String image) {
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    private User user;
+
+    private PageBean pageBean;
+
+    public PageBean getPageBean() {
+        return pageBean;
+    }
+
+    public void setPageBean(PageBean pageBean) {
+        this.pageBean = pageBean;
+    }
+
+    private Date createTime;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public GardenNews(Integer id, String cotent, Integer isTop, Integer userId, String image,Date createTime) {
         this.id = id;
         this.cotent = cotent;
-        this.istop = istop;
-        this.userid = userid;
+        this.isTop = isTop;
+        this.userId = userId;
         this.image = image;
+        this.createTime = createTime;
     }
 
     public GardenNews() {
@@ -39,20 +76,20 @@ public class GardenNews {
         this.cotent = cotent == null ? null : cotent.trim();
     }
 
-    public Integer getIstop() {
-        return istop;
+    public Integer getIsTop() {
+        return isTop;
     }
 
-    public void setIstop(Integer istop) {
-        this.istop = istop;
+    public void setIsTop(Integer isTop) {
+        this.isTop = isTop;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getImage() {

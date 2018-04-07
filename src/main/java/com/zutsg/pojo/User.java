@@ -1,6 +1,5 @@
 package com.zutsg.pojo;
 
-
 import com.zutsg.unti.PageBean;
 
 public class User {
@@ -23,14 +22,6 @@ public class User {
     private String header;
 
     private String name;
-
-    public PageBean getPageBean() {
-        return pageBean;
-    }
-
-    public void setPageBean(PageBean pageBean) {
-        this.pageBean = pageBean;
-    }
 
     private PageBean pageBean;
 
@@ -130,5 +121,11 @@ public class User {
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
     }
+    public PageBean getPageBean() {
+        return pageBean;
+    }
 
+    public void setPageBean(PageBean pageBean) {
+        this.pageBean = pageBean;
+    }
 }

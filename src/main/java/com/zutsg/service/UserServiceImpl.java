@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Administrator on 2018/4/5 0005.
  */
 @Service
-public class UserSeriveImpl implements UserMapper{
+public class UserServiceImpl implements UserMapper{
 
 @Resource
 private UserMapper userMapper;

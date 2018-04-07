@@ -1,12 +1,11 @@
 package com.zutsg.dao;
 
 import com.zutsg.pojo.GardenNews;
-import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 public interface GardenNewsMapper {
     int deleteByPrimaryKey(Integer id);
-
-    int insert(GardenNews record);
 
     int insertSelective(GardenNews record);
 
@@ -14,5 +13,8 @@ public interface GardenNewsMapper {
 
     int updateByPrimaryKeySelective(GardenNews record);
 
-    int updateByPrimaryKey(GardenNews record);
+    List<GardenNews> selectByNews(GardenNews record);
+
+    List<GardenNews> selectByNewsPage(GardenNews record);
+
 }

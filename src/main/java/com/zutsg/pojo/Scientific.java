@@ -1,7 +1,12 @@
 package com.zutsg.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zutsg.unti.PageBean;
+
+import java.util.Date;
+
 public class Scientific {
-    private String id;
+    private Integer id;
 
     private String title;
 
@@ -11,30 +16,63 @@ public class Scientific {
 
     private String address;
 
-    private Integer userid;
+    private Integer userId;
 
     private Integer status;
 
-    public Scientific(String id, String title, String image, String content, String address, Integer userid, Integer status) {
+    private PageBean pageBean;
+
+    private User user;
+
+    public PageBean getPageBean() {
+        return pageBean;
+    }
+
+    public void setPageBean(PageBean pageBean) {
+        this.pageBean = pageBean;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    private Date createTime;
+
+
+    public Scientific(Integer id, String title, String image, String content, String address, Integer userId, Integer status,Date createTime) {
         this.id = id;
         this.title = title;
         this.image = image;
         this.content = content;
         this.address = address;
-        this.userid = userid;
+        this.userId = userId;
         this.status = status;
+        this.createTime = createTime;
     }
 
     public Scientific() {
         super();
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -69,12 +107,12 @@ public class Scientific {
         this.address = address == null ? null : address.trim();
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Integer getStatus() {

@@ -2,16 +2,18 @@ package com.zutsg.dao;
 
 import com.zutsg.pojo.Scientific;
 
-public interface ScientificMapper {
-    int deleteByPrimaryKey(String id);
+import java.util.List;
 
-    int insert(Scientific record);
+public interface ScientificMapper {
+    int deleteByPrimaryKey(Integer id);
 
     int insertSelective(Scientific record);
 
-    Scientific selectByPrimaryKey(String id);
+    Scientific selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(Scientific record);
 
-    int updateByPrimaryKey(Scientific record);
+   List<Scientific> selectByScientfic(Scientific record);
+
+    List<Scientific> selectByScientficPage(Scientific record);
 }

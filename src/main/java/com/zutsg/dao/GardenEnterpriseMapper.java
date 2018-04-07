@@ -2,7 +2,6 @@ package com.zutsg.dao;
 
 import com.zutsg.pojo.GardenEnterprise;
 
-
 public interface GardenEnterpriseMapper {
     int deleteByPrimaryKey(Integer id);
 

@@ -9,7 +9,7 @@ public interface CommentMapper {
 
     int insertSelective(Comment record);
 
-    Comment selectByPrimaryKey(Integer id);
+     Comment selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(Comment record);
 

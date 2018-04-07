@@ -1,7 +1,7 @@
 package com.zutsg.controller;
 
 import com.zutsg.pojo.User;
-import com.zutsg.service.UserSeriveImpl;
+import com.zutsg.service.UserServiceImpl;
 import com.zutsg.unti.PageBean;
 import com.zutsg.unti.ReturnDatas;
 import org.apache.commons.lang.StringUtils;
@@ -22,7 +22,7 @@ import java.util.List;
 public class UserController {
 
     @Resource
-    private UserSeriveImpl userSerive;
+    private UserServiceImpl userSerive;
 
         /*
         * 分页的查询
@@ -94,6 +94,9 @@ public class UserController {
     ReturnDatas update(User user, HttpServletRequest request, HttpServletResponse response){
         ReturnDatas returnDatas= ReturnDatas.getSuccessReturnDatas();
         returnDatas.setMessage("修改成功！");
+        if(user.getId()==null){
+            return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
+        }
         try {
             userSerive.updateByPrimaryKeySelective(user);
         }catch (Exception e){
@@ -117,7 +120,14 @@ public class UserController {
            if(userList.size()>0&&userList!=null){
                List<User> users=userSerive.selectByUser(user);
                if (users.size()>0&&users!=null){
-                   request.getSession().setAttribute("userSession",users.get(0));
+                       if (users.get(0).getStatus() == 2) {
+                           request.getSession().setAttribute("userSession", users.get(0));
+                           returnDatas.setData(users.get(0));
+                       } else if (users.get(0).getStatus() == 1) {
+                           return new ReturnDatas(ReturnDatas.ERROR, "你的账号还在申请中！");
+                       } else if (users.get(0).getStatus()==3) {
+                           return new ReturnDatas(ReturnDatas.ERROR, "你的账号还在申请中！\r\n"+users.get(0).getReason());
+                       }
                }else {
                    return new ReturnDatas(ReturnDatas.ERROR,"用户名或密码错误！");
                }
