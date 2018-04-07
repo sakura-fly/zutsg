@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script src="libs/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="libs/js/layui.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="libs/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="libs/css/bootstrap.min.css">
+</head>
+<body>
+<h1>中工大学科技园后台管理系统</h1>
+<div class="contt">
+    <div class="col-lg-offset-8 col-lg-2 cr">
+        <div class="layui-form">
+            <span id="dl"><b>登录</b></span> <br><br>
+            <input type="text" class="layui-input" placeholder="手机号" id="username"><br>
+            <input type="text" class="layui-input" placeholder="请输入密码" id="pwd"><br>
+            <button class="layui-btn" id="submit">登录</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<style>
+    h1{
+        margin: 60px;
+        margin-left: 233px;
+    }
+    #dl{
+        font-size: 18px;
+
+    }
+    .contt{
+        width:100%;
+        height: 500px;
+        background: #66ccff;
+        /*margin-top: 123px;*/
+    }
+    .cr{
+        background-color: white;
+        margin-top:10px;
+        padding-top:10px;
+        padding-bottom:10px;
+        margin-top:90px;
+    }
+</style>
+<script type="text/javascript">
+    var username = $("#username").val();
+    var pwd = $("#pwd").val();
+    $("#submit").click(function(event) {
+        $.ajax({
+            url: 'user/login.spring',
+            // type: 'default GET (Other values: POST)',
+            // dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+            data: {phone: username,password:pwd},
+        })
+        .done(function(e) {
+            // console.log(e);
+            if (e.status == "error") {
+                alert(e.message);
+            }
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });        
+    });
+
+    
+</script>

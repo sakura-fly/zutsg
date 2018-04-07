@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户管理</title>
+    <script src="libs/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="libs/js/layui.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="libs/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="libs/css/bootstrap.min.css">
+</head>
+<body>
+<table class="layui-table">
+</table>
+<div id="pagen">
+
+</div>
+</body>
+</html>
+<script type="text/javascript">
+	var pagenum = 1;
+	gettable();
+	function gettable() {
+		$.ajax({
+			url: 'user/listPage.spring',
+			// type: 'default GET (Other values: POST)',
+			dataType: 'json',
+			data: {pageIndex: pagenum},
+		})
+		.done(function(e) {
+			var data = e.data;
+			createTable(data);
+			layui.use('laypage', function(){
+			  var laypage = layui.laypage;
+			  
+			  //执行一个laypage实例
+			  laypage.render({
+			    elem: 'pagen',
+			    count: e.pageBean.count,
+			    curr:pagenum,
+			    jump: function(obj, first){
+		
+				    if(!first){
+						pagenum = obj.curr;
+	  					gettable()
+				    }
+			    }
+			  });
+			});
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	}
+	
+	function createTable(data){
+		var thtml = '<tr><th>姓名</th><th>手机号</th><th>角色</th><th>申请信息</th><th>拒绝原因</th><th>资质图片</th><th>头像</th><th>状态</th><th>操作</th></tr> ';
+
+		for (var i = 0; i < data.length; i++) {
+			var c = '';
+			switch (data[i].role){
+
+				case 1:
+				c = '创业者'
+				break;	
+				case 2:
+				c = '企业'
+				break;
+				case 3:
+				c = '管理员'
+				break;
+			}
+			var stat = ''
+			switch (data[i].status){
+
+				case 1:
+				stat = '审核中'
+				break;	
+				case 2:
+				stat = '审核成功'
+				break;
+				case 3:
+				stat = '审核失败'
+				break;
+			}
+			thtml += '<tr><td>' + data[i].name +'</td><td>' + data[i].phone + '</td><td>' + c + '</td><td>' + data[i].info + '</td><td>' + data[i].reason +'</td><td>' + data[i].image + '</td><td>' + data[i].header + '</td><td>' + stat + '</td><td>' + '<a href="javascript:;" tag="' + data[i].id + '">同意</a>	' + '</td></tr> ';
+		}
+		$("table").html(thtml)
+	}
+	
+</script>
