@@ -40,19 +40,18 @@ public class Scientific {
         this.user = user;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    public Date getCreateTime() {
+    public java.util.Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(java.util.Date createTime) {
         this.createTime = createTime;
     }
 
-    private Date createTime;
+    private java.util.Date createTime;
 
 
-    public Scientific(Integer id, String title, String image, String content, String address, Integer userId, Integer status,Date createTime) {
+    public Scientific(Integer id, String title, String image, String content, String address, Integer userId, Integer status,java.util.Date createTime) {
         this.id = id;
         this.title = title;
         this.image = image;
