@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>用户管理</title>
     <script src="libs/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-    <script src="libs/js/layui.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="libs/css/layui.css">
+    <script src="libs/layui/layui.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="libs/layui/css/layui.css">
     <link rel="stylesheet" type="text/css" href="libs/css/bootstrap.min.css">
 </head>
 <body>
@@ -88,9 +88,107 @@
 				stat = '审核失败'
 				break;
 			}
-			thtml += '<tr><td>' + data[i].name +'</td><td>' + data[i].phone + '</td><td>' + c + '</td><td>' + data[i].info + '</td><td>' + data[i].reason +'</td><td>' + data[i].image + '</td><td>' + data[i].header + '</td><td>' + stat + '</td><td>' + '<a href="javascript:;" tag="' + data[i].id + '">同意</a>	' + '</td></tr> ';
+			thtml += '<tr><td>' + data[i].name +'</td><td>' + data[i].phone + '</td><td>' + c + '</td><td>' + data[i].info + '</td><td>' + data[i].reason +'</td><td>' + data[i].image + '</td><td>' + data[i].header + '</td><td>' + stat + '</td><td>' + '<a class="agree" href="javascript:;" tag="' + data[i].id + '">同意</a> <a class="fail" href="javascript:;" tag="' + data[i].id + '">拒绝</a> <a class="del" href="javascript:;" tag="' + data[i].id + '">删除</a> ' + '</td></tr> ';
 		}
 		$("table").html(thtml)
+		$(".agree").click(function(event) {
+			  
+			agreeReg($(this).attr('tag'))
+		});
+		$(".del").click(function(event) {
+			      
+			delReg($(this).attr('tag'))
+		});
+		$(".fail").click(function(event) {
+			      
+			fail($(this).attr('tag'))
+		});
 	}
+	function delReg(id) {
+		$.ajax({
+			url: 'user/delete.spring',
+			// type: 'default GET (Other values: POST)',
+			dataType: 'json',
+			data: {id: id},
+		})
+		.done(function(e) {
+			if(e.status == 'success'){
+				gettable()
+			} else {
+				alert(e.message)
+			}
+		})
+		.fail(function() {
+			console.log("error");
+			alert('网络错误')
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		
+	}
+	function fail(id) {
+		layui.use('layer', function(){
+		  var layer = layui.layer;
+		  
+		  // layer.msg('hello');
+		  layer.open({
+		  	 	type: 1, 
+		  	 	title:"拒绝信息",
+  				content: '<input type="text" style="margin-top: 10px;margin-bottom: 10px;" class="layui-input" placeholder="请输入拒绝理由" id="reason">',  	
+  				btn: ['关闭', '确定'],
+  				area: '400px',
+			    btn2: function(index, layero){
+			    	// alert($("#reason").val());
+			    	failReg(id, $("#reason").val())
+			  }
+  		  })
+		}); 
+	}
+	function failReg(id, reason) {
+		$.ajax({
+			url: 'user/refuse.spring',
+			// type: 'default GET (Other values: POST)',
+			dataType: 'json',
+			async:false,
+			data: {id: id, reason: reason},
+		})
+		.done(function(e) {
+			alert(e.message)
+			if(e.status == 'success'){
+				gettable()
+			}
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		
+	}
+	function agreeReg(id) {
+		$.ajax({
+			url: 'user/agree.spring',
+			// type: 'default GET (Other values: POST)',
+			dataType: 'json',
+			data: {id: id},
+		})
+		.done(function(e) {
+			alert(e.message)
+			if(e.status == 'success'){
+				gettable()
+			}
+		})
+		.fail(function() {
+			alert('网络错误')
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		
+	}
+
+
 	
 </script>
