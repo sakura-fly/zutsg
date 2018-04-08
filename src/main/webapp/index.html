@@ -46,28 +46,32 @@
     }
 </style>
 <script type="text/javascript">
-    var username = $("#username").val();
-    var pwd = $("#pwd").val();
-    $("#submit").click(function(event) {
-        $.ajax({
-            url: 'user/login.spring',
-            // type: 'default GET (Other values: POST)',
-            // dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-            data: {phone: username,password:pwd},
-        })
-        .done(function(e) {
-            // console.log(e);
-            if (e.status == "error") {
-                alert(e.message);
-            }
-        })
-        .fail(function() {
-            console.log("error");
-        })
-        .always(function() {
-            console.log("complete");
-        });        
-    });
+   $(document).ready(function() {
 
+        $("#submit").click(function(event) {
+            var username = $("#username").val();
+            var pwd = $("#pwd").val();
+            console.log({phone: username,password:pwd})
+            $.ajax({
+                url: 'user/login.spring',
+                // type: 'default GET (Other values: POST)',
+                // dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+                data: {phone: username,password:pwd},
+            })
+            .done(function(e) {
+                // console.log(e);
+                if (e.status == "error") {
+                    alert(e.message);
+                }
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });        
+        });
+
+   });
     
 </script>
