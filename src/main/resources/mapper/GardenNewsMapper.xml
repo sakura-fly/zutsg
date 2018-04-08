@@ -8,16 +8,17 @@
       <arg column="isTop" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="userId" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="image" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="createTime" jdbcType="DATE" javaType="java.util.Date" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, cotent, isTop, userId, image
+    id, cotent, isTop, userId, image,createTime
   </sql>
 
   <select id="selectByNews" parameterType="com.zutsg.pojo.GardenNews" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from interspace where 1=1
+    from garden_news where 1=1
     <if test="id != null">
       and id=#{id,jdbcType=INTEGER}
     </if>
@@ -40,7 +41,7 @@
   <select id="selectByNewsPage" parameterType="com.zutsg.pojo.GardenNews" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from interspace where 1=1
+    from garden_news where 1=1
     <if test="id != null">
       and id=#{id,jdbcType=INTEGER}
     </if>
@@ -91,6 +92,9 @@
       <if test="image != null">
         image,
       </if>
+      <if test="createTime != null">
+     createTime,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -108,6 +112,9 @@
       <if test="image != null">
         #{image,jdbcType=VARCHAR},
       </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zutsg.pojo.GardenNews">
@@ -124,6 +131,9 @@
       </if>
       <if test="image != null">
         image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+         createTime=#{createTime,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

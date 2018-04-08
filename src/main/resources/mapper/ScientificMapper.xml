@@ -10,7 +10,7 @@
       <arg column="address" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="userId" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="createTime" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="createTime"  javaType="java.util.Date" jdbcType="TIMESTAMP"/>
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
@@ -22,7 +22,7 @@
     from scientific
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectByScientfic" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByScientfic" parameterType="com.zutsg.pojo.Scientific" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from scientific  where 1=1
@@ -54,7 +54,7 @@
 
 
 
-  <select id="selectByScientficPage" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByScientficPage" parameterType="com.zutsg.pojo.Scientific" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from scientific  where 1=1

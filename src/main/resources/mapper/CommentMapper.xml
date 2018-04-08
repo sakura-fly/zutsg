@@ -9,10 +9,11 @@
       <arg column="toUserId" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="spaceId" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="createTime" jdbcType="DATE" javaType="java.util.Date" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, content, userId, toUserId, spaceId, type
+    id, content, userId, toUserId, spaceId, type,createTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -20,18 +21,62 @@
     from comment
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectByComment" parameterType="com.zutsg.pojo.Interspace" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from comment where 1=1
+    <if test="id != null">
+      and id=#{id,jdbcType=INTEGER}
+    </if>
+    <if test="content != null">
+      and  content=#{content,jdbcType=VARCHAR}
+    </if>
+    <if test="userId != null">
+      and userId=#{userId,jdbcType=INTEGER}
+    </if>
+    <if test="toUserId != null">
+      and toUserId=#{toUserId,jdbcType=INTEGER}
+    </if>
+    <if test="spaceId != null">
+      and spaceId=#{spaceId,jdbcType=INTEGER}
+    </if>
+    <if test="type != null">
+      and type=#{type,jdbcType=INTEGER}
+    </if>
+  </select>
+
+  <select id="selectByCommentPage" parameterType="com.zutsg.pojo.Interspace" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from comment where 1=1
+    <if test="id != null">
+      and id=#{id,jdbcType=INTEGER}
+    </if>
+    <if test="content != null">
+      and  content=#{content,jdbcType=VARCHAR}
+    </if>
+    <if test="userId != null">
+      and userId=#{userId,jdbcType=INTEGER}
+    </if>
+    <if test="toUserId != null">
+      and toUserId=#{toUserId,jdbcType=INTEGER}
+    </if>
+    <if test="spaceId != null">
+      and spaceId=#{spaceId,jdbcType=INTEGER}
+    </if>
+    <if test="type != null">
+      and type=#{type,jdbcType=INTEGER}
+    </if>
+    limit ${pageBean.page},${pageBean.pageSize}
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from comment
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zutsg.pojo.Comment">
-    insert into comment (id, content, userId, 
-      toUserId, spaceId, type
-      )
-    values (#{id,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
-      #{touserid,jdbcType=INTEGER}, #{spaceid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}
-      )
-  </insert>
+
   <insert id="insertSelective" parameterType="com.zutsg.pojo.Comment">
     insert into comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -53,6 +98,9 @@
       <if test="type != null">
         type,
       </if>
+      <if test="createTime != null">
+       createTime,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -72,6 +120,9 @@
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -93,6 +144,9 @@
       <if test="type != null">
         type = #{type,jdbcType=INTEGER},
       </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -102,7 +156,9 @@
       userId = #{userid,jdbcType=INTEGER},
       toUserId = #{touserid,jdbcType=INTEGER},
       spaceId = #{spaceid,jdbcType=INTEGER},
-      type = #{type,jdbcType=INTEGER}
+      type = #{type,jdbcType=INTEGER},
+     createTime= #{createTime,jdbcType=INTEGER},
+
       where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
