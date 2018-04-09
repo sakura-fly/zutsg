@@ -3,14 +3,14 @@
 <mapper namespace="com.zutsg.dao.ScientificMapper" >
   <resultMap id="BaseResultMap" type="com.zutsg.pojo.Scientific">
     <constructor>
-      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="image" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="address" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="userId" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="createTime"  javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+      <arg column="createTime"  javaType="java.util.Date" jdbcType="DATE"/>
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
@@ -142,7 +142,7 @@
         #{status,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
-        #{createTime,jdbcType=INTEGER},
+        #{createTime,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -168,7 +168,7 @@
         status = #{status,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
-        #{createTime,jdbcType=INTEGER},
+        #{createTime,jdbcType=DATE},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

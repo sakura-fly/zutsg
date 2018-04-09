@@ -13,14 +13,13 @@
       <arg column="image" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="header" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="createTime" jdbcType="DATE" javaType="java.util.Date" />
     </constructor>
   </resultMap>
 
 
 
   <sql id="Base_Column_List" >
-    id, role, phone, status, reason, info, password, image, header, name,createTime
+    id, role, phone, status, reason, info, password, image, header, name
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -153,9 +152,7 @@
       <if test="name != null" >
         name,
       </if>
-      <if test="createTime != null" >
-        createTime,
-      </if>
+
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -188,9 +185,7 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=VARCHAR},
-      </if>
+
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zutsg.pojo.User" >
@@ -223,9 +218,7 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
-        createTime = #{createTime,jdbcType=VARCHAR},
-      </if>
+
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>

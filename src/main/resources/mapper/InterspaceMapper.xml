@@ -6,7 +6,7 @@
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="image" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="cotent" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="address" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="topNum" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="userId" javaType="java.lang.Integer" jdbcType="INTEGER" />
@@ -14,7 +14,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, title, image, cotent, address, topNum,userId
+    id, title, image, content, address, topNum,userId,createTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -149,7 +149,7 @@
         #{userId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
-        #{createTime,jdbcType=INTEGER},
+        #{createTime,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -175,7 +175,7 @@
         topNum = #{userId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
-        #{createTime,jdbcType=INTEGER},
+        #{createTime,jdbcType=DATE},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -188,7 +188,7 @@
       address = #{address,jdbcType=VARCHAR},
       topNum = #{topNum,jdbcType=INTEGER},
        userId = #{userId,jdbcType=INTEGER},
-     createTime= #{createTime,jdbcType=INTEGER},
+     createTime= #{createTime,jdbcType=DATE},
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
