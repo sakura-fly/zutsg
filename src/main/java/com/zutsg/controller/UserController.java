@@ -180,7 +180,7 @@ public class UserController {
     public @ResponseBody
     ReturnDatas refuse(User user, HttpServletRequest request, HttpServletResponse response){
         ReturnDatas returnDatas= ReturnDatas.getSuccessReturnDatas();
-        returnDatas.setMessage("审核成功！");
+        returnDatas.setMessage("拒绝成功！");
         if(user.getId()==null){
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }

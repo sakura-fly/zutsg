@@ -12,7 +12,7 @@ public class Interspace {
 
     private String image;
 
-    private String cotent;
+    private String content;
 
     private String address;
 
@@ -50,11 +50,11 @@ public class Interspace {
         this.pageBean = pageBean;
     }
 
-    public Interspace(Integer id, String title, String image, String cotent, String address, Integer topNum, Integer userId,Date createTime) {
+    public Interspace(Integer id, String title, String image, String content, String address, Integer topNum, Integer userId,Date createTime) {
         this.id = id;
         this.title = title;
         this.image = image;
-        this.cotent = cotent;
+        this.content = content;
         this.address = address;
         this.topNum = topNum;
         this.userId = userId;
@@ -89,12 +89,12 @@ public class Interspace {
         this.image = image == null ? null : image.trim();
     }
 
-    public String getCotent() {
-        return cotent;
+    public String getContent() {
+        return content;
     }
 
-    public void setCotent(String cotent) {
-        this.cotent = cotent == null ? null : cotent.trim();
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getAddress() {

@@ -24,30 +24,6 @@ public class Scientific {
 
     private User user;
 
-    public PageBean getPageBean() {
-        return pageBean;
-    }
-
-    public void setPageBean(PageBean pageBean) {
-        this.pageBean = pageBean;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public java.util.Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(java.util.Date createTime) {
-        this.createTime = createTime;
-    }
-
     private java.util.Date createTime;
 
 
@@ -59,7 +35,7 @@ public class Scientific {
         this.address = address;
         this.userId = userId;
         this.status = status;
-        this.createTime = createTime;
+        this.createTime=createTime;
     }
 
     public Scientific() {
@@ -120,5 +96,28 @@ public class Scientific {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+    public PageBean getPageBean() {
+        return pageBean;
+    }
+
+    public void setPageBean(PageBean pageBean) {
+        this.pageBean = pageBean;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public java.util.Date getCreateTime() {
+        return createTime;
+    }
+    public void setCreateTime(java.util.Date createTime) {
+        this.createTime = createTime;
     }
 }

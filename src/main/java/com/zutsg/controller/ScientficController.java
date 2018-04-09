@@ -45,6 +45,7 @@ public class ScientficController  {
             List<Scientific> scientificList=scientificService.selectByScientficPage(scientific);
             returnDatas.setData(scientificList);
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;
@@ -61,6 +62,7 @@ public class ScientficController  {
             List<Scientific> scientificList=scientificService.selectByScientfic(scientific);
             returnDatas.setData(scientificList);
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;
@@ -114,6 +116,7 @@ public class ScientficController  {
         try {
             scientificService.selectByPrimaryKey(scientific.getId());
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;
@@ -132,6 +135,7 @@ public class ScientficController  {
         try {
             scientificService.deleteByPrimaryKey(scientific.getId());
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;

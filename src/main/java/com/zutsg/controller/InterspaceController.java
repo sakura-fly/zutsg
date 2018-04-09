@@ -40,6 +40,7 @@ public class InterspaceController  {
             List<Interspace> interspaceList=interspaceService.selectByIntersapcePage(interspace);
             returnDatas.setData(interspaceList);
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;
@@ -52,6 +53,7 @@ public class InterspaceController  {
             List<Interspace> interspaceList=interspaceService.selectByIntersapce(interspace);
             returnDatas.setData(interspaceList);
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;
@@ -68,6 +70,7 @@ public class InterspaceController  {
           Interspace interspaces=interspaceService.selectByPrimaryKey(interspace.getId());
             returnDatas.setData(interspaces);
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;
@@ -85,6 +88,7 @@ public class InterspaceController  {
            interspaceService.updateByPrimaryKeySelective(interspace);
 
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;
@@ -101,6 +105,7 @@ public class InterspaceController  {
             interspace.setCreateTime(new Date());
             interspaceService.insertSelective(interspace);
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;
@@ -116,6 +121,7 @@ public class InterspaceController  {
         try {
             interspaceService.deleteByPrimaryKey(interspace.getId());
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;
@@ -135,6 +141,7 @@ public class InterspaceController  {
                interspaceService.updateByPrimaryKey(interspace);
            }
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;
