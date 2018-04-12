@@ -14,7 +14,7 @@
 	</div>
 	<ul class="nnav layui-nav layui-bg-blue" lay-filter="">
 		<div align="center">
-			  <li class="rl layui-nav-item layui-this"><a href="javascript:;">园区概况</a></li>
+			  <li class="rl layui-nav-item layui-this"><a href="javascript:onclik(1);">园区概况</a></li>
 			  <li class="rl layui-nav-item"><a href="javascript:;">园区新闻</a></li>
 			  <li class="rl layui-nav-item"><a href="javascript:;">园区服务</a></li>
 			  <li class="rl layui-nav-item"><a href="javascript:;">众创空间</a></li>
@@ -36,19 +36,21 @@
 	</div>
 	<div class="container">
 		<div class="col-lg-6">
-			6656 <br>
-			6656 <br>
-			6656 <br>
-			6656 <br>
-			6656 <br>
-			6656 <br>
-			6656 <br>
+
 
 		</div>
-		<div class=col-lg-offset-6 col-lg-6">
-			888
+		<div class="col-lg-offset-6 col-lg-6">
+
 		</div>
+		<div class="pad" >
+		</div>
+		<div class="active1"><label class="label1"><a href="javascript:void(0);" onclick="onclik(1)" style="text-decoration: none">园区介绍</a></label></div>
+		<div class="active2" id="active2"><label class="label2"><a href="javascript:onclik(2)" style="text-decoration: none">入园条件</a></label></div>
+		<div class="active3"><label class="label1"><a href="javascript:onclik(3)" style="text-decoration: none">入园引导</a></label></div>
+		<div class="active4"><label class="label1"><a href="javascript:onclik(4)" style="text-decoration: none"> 入园须知</a></label></div>
+
 	</div>
+	<div style="display: none;" id="recordDialog" ></div>
 </body>
 </html>
 <script type="text/javascript">
@@ -70,7 +72,56 @@
             //,anim: 'updown' //切换动画方式
         });
     });
+    /*头部点击事件*/
+function onclik(type) {
+if(type!=undefined){
+    //园区概况
+            $.ajax({
+                url: 'gardenGeneral/look.spring',
+            })
+                .done(function(e) {
+                    // console.log(e);
+                    if (e.status == "error") {
+                        alert(e.message);
+                        return;
+                    }else {
+                        alert("成功！");
+					}
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                    console.log("complete");
+                });
 
+
+	}
+
+
+
+}
+function tan(test) {
+    alert(test);
+        var index = layer.load(0, {    //0为加载样式  有 0  ，  1   2
+            shade: [0.1,'#fff'] //0.1透明度的白色背景
+        });
+
+        layer.open({
+            title:'健康档案列表',
+            area: ['860px', '400px'],
+            shadeClose: true, //开启遮罩关闭
+            content: $('#recordDialog'),
+            success:function (layero,index) {
+                dialog = $(layero) ;
+                dialog.find("#recordDialog").show() ;
+            },
+            end:function () {
+                $('#recordDialog').find("tbody").empty() ;
+            }
+        });
+        layer.close(index);
+}
 </script>
 <style>
 	.rl{
@@ -81,4 +132,61 @@
 		margin-top: 0;
 		margin-bottom: 0;
 	}
+	.active1{
+		width: 800px;
+		height:370px;
+		background: #ff8f5c;
+		margin-left:-350px;
+		margin-top: -1460px;
+		border-radius: 100px;
+		text-align: center;
+	}
+	.active2{
+		float: left;
+		width: 800px;
+		height:370px;
+		background: #5b89ff;
+		border-radius: 100px;
+		margin-left: 670px;
+		margin-top: -370px;
+		text-align: center;
+	}
+	.active3{
+		width: 800px;
+		height:370px;
+		background: #6eff42;
+		margin-left:-350px;
+		margin-top: 35px;
+		border-radius: 100px;
+		text-align: center;
+
+	}
+	.active4{
+		float: left;
+		width: 800px;
+		height:370px;
+		background: #ff4256;
+		border-radius: 100px;
+		margin-left: 670px;
+		margin-top: -365px;
+		text-align: center;
+	}
+	.pad{
+		margin-left:-800px;
+		margin-top: 20px;
+		width: 2600px;
+		height: 1500px;
+		background: #88fcff;
+	}
+	label{
+		text-align: center;
+		margin-top: 140px;
+		font-size: 50px;
+		color: #f6feff;
+	}
+	.active1:hover{ background: #ff6ca9;}
+	.active2:hover{ background: #ffa366;}
+	.active3:hover{ background: #7dbdff;}
+	.active4:hover{ background: #ff85b0;}
+
 </style>
