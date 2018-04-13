@@ -42,6 +42,7 @@ public class GardenNewsController {
             List<GardenNews> gardenNewsList=gardenNewsService.selectByNewsPage(gardenNews);
             returnDatas.setData(gardenNewsList);
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;
@@ -54,6 +55,7 @@ public class GardenNewsController {
             List<GardenNews> gardenNewsList=gardenNewsService.selectByNews(gardenNews);
             returnDatas.setData(gardenNewsList);
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;
@@ -70,6 +72,7 @@ public class GardenNewsController {
           GardenNews gardenNewsResult=gardenNewsService.selectByPrimaryKey(gardenNews.getId());
             returnDatas.setData(gardenNewsResult);
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;
@@ -87,6 +90,7 @@ public class GardenNewsController {
            gardenNewsService.updateByPrimaryKeySelective(gardenNews);
 
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;
@@ -103,6 +107,7 @@ public class GardenNewsController {
             gardenNews.setCreateTime(new Date());
             gardenNewsService.insertSelective(gardenNews);
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;
@@ -118,6 +123,7 @@ public class GardenNewsController {
         try {
             gardenNewsService.deleteByPrimaryKey(gardenNews.getId());
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;

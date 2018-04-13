@@ -42,8 +42,10 @@ public class GardenGeneralController {
         ReturnDatas returnDatas= ReturnDatas.getSuccessReturnDatas();
         returnDatas.setMessage("成功！");
         try {
-            gardenGeneralService.selectByPrimaryKey(1);
+           GardenGeneral gardenGeneralResult= gardenGeneralService.selectByPrimaryKey(1);
+           returnDatas.setData(gardenGeneralResult);
         }catch (Exception e){
+            e.printStackTrace();
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
         }
         return returnDatas;

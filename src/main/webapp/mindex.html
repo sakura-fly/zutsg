@@ -34,13 +34,10 @@
 			<img src="img/banner3.jpg"/>
 		</div>
 	</div>
-	<div class="container">
+<!--	<div class="container">
 		<div class="col-lg-6">
-
-
 		</div>
 		<div class="col-lg-offset-6 col-lg-6">
-
 		</div>
 		<div class="pad" >
 		</div>
@@ -49,8 +46,26 @@
 		<div class="active3"><label class="label1"><a href="javascript:onclik(3)" style="text-decoration: none">入园引导</a></label></div>
 		<div class="active4"><label class="label1"><a href="javascript:onclik(4)" style="text-decoration: none"> 入园须知</a></label></div>
 
-	</div>
-	<div style="display: none;" id="recordDialog" ></div>
+	</div>-->
+	<!--<div id="garden">
+
+
+	</div>-->
+	<p class="p1">欢迎了解中工大学科技园</p>
+	<hr/>
+       <button class="layui-btn  button1" onclick="onclik(1)">园区介绍</button>
+	   <button class="layui-btn layui-btn-normal button2" onclick="onclik(2)">入园条件</button>
+	   <button class="layui-btn layui-btn-warm button3" onclick="onclik(3)">入园引导</button>
+    	<button class="layui-btn layui-btn-danger button4" onclick="onclik(4)">入园须知</button>
+	<p><img  class="img-circle imgs" src="img/hezuo.jpg"></p>
+	<div class="kuai1"><img src="img/timg%20(2).jpg" class="test1"><label><label class="labelOne">园区空间</label><br/><a href="" style="text-decoration: none">点击这里跳转空间</a></label></div>
+	<div class="kuai2"><img src="img/timg%20(1).jpg" class="test2"><label><label class="labelOne">新闻动态</label><br/><a href="" style="text-decoration: none">点击这里跳转新闻</a></label></div>
+	<div class="kuai3"></div>
+	<div id="div_head"><p style="font-size: 40px;color: gray">2018迎接全新的</p><p style="font-size: 25px;color:gray ">中原工学院大学科技园</p></div>
+	<p style="font-size: 50px;color: #061911;margin-left: 1300px" id="p_title">标题</p>
+	<div class="content"></div>
+	<img src="img/img.jpg" id="imgs">
+	 <iframe src="foot.html" width="100%" height="350px" scrolling="no" frameborder="0" style="margin-top: 100px"></iframe>
 </body>
 </html>
 <script type="text/javascript">
@@ -74,54 +89,37 @@
     });
     /*头部点击事件*/
 function onclik(type) {
-if(type!=undefined){
-    //园区概况
-            $.ajax({
-                url: 'gardenGeneral/look.spring',
-            })
-                .done(function(e) {
-                    // console.log(e);
-                    if (e.status == "error") {
-                        alert(e.message);
-                        return;
-                    }else {
-                        alert("成功！");
-					}
-                })
-                .fail(function() {
-                    console.log("error");
-                })
-                .always(function() {
-                    console.log("complete");
-                });
-
-
-	}
-
-
-
-}
-function tan(test) {
-    alert(test);
-        var index = layer.load(0, {    //0为加载样式  有 0  ，  1   2
-            shade: [0.1,'#fff'] //0.1透明度的白色背景
-        });
-
-        layer.open({
-            title:'健康档案列表',
-            area: ['860px', '400px'],
-            shadeClose: true, //开启遮罩关闭
-            content: $('#recordDialog'),
-            success:function (layero,index) {
-                dialog = $(layero) ;
-                dialog.find("#recordDialog").show() ;
-            },
-            end:function () {
-                $('#recordDialog').find("tbody").empty() ;
+    $.ajax({
+        url: 'gardenGeneral/look.spring',
+        dataType: 'json',
+        async:false,
+    })
+        .done(function(e) {
+            if(e.status == 'success'){
+              if(type==1){
+                 $('#p_title').html("园区简介")
+                 $('.content').html(e.data.gardenIntroduction);
+			  }else if(type==2){
+                  $('#p_title').html("入园条件")
+                  $('.content').html(e.data.inGardenCondition);
+			  }else if(type==3){
+                  $('#p_title').html("入园流程")
+                  $('.content').html(e.data.inGardenFlow);
+			  }else if(type==4){
+                  $('#p_title').html("入园须知")
+                  $('.content').html(e.data.inGardenKnow);
+			  }
             }
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
         });
-        layer.close(index);
-}
+};
+
+
 </script>
 <style>
 	.rl{
@@ -132,61 +130,94 @@ function tan(test) {
 		margin-top: 0;
 		margin-bottom: 0;
 	}
-	.active1{
-		width: 800px;
-		height:370px;
-		background: #ff8f5c;
-		margin-left:-350px;
-		margin-top: -1460px;
-		border-radius: 100px;
-		text-align: center;
-	}
-	.active2{
-		float: left;
-		width: 800px;
-		height:370px;
-		background: #5b89ff;
-		border-radius: 100px;
-		margin-left: 670px;
-		margin-top: -370px;
-		text-align: center;
-	}
-	.active3{
-		width: 800px;
-		height:370px;
-		background: #6eff42;
-		margin-left:-350px;
-		margin-top: 35px;
-		border-radius: 100px;
-		text-align: center;
-
-	}
-	.active4{
-		float: left;
-		width: 800px;
-		height:370px;
-		background: #ff4256;
-		border-radius: 100px;
-		margin-left: 670px;
-		margin-top: -365px;
-		text-align: center;
-	}
-	.pad{
-		margin-left:-800px;
+	.p1{
 		margin-top: 20px;
-		width: 2600px;
-		height: 1500px;
-		background: #88fcff;
+		margin-left: 460px;
+		font-size: 25px;
+		color: #191717;
+		font-weight: normal;
 	}
-	label{
-		text-align: center;
-		margin-top: 140px;
-		font-size: 50px;
-		color: #f6feff;
+    hr{
+		border: 2px dashed;
+		color: #7b7e80;
 	}
-	.active1:hover{ background: #ff6ca9;}
-	.active2:hover{ background: #ffa366;}
-	.active3:hover{ background: #7dbdff;}
-	.active4:hover{ background: #ff85b0;}
-
+	.button1{
+		margin-left:460px;
+		height: 60px;
+		width: 150px;
+	}
+	.button2{
+		margin-left: 120px;
+		height: 60px;
+		width: 150px;
+	}
+	.button3{
+		margin-left: 460px;
+		height: 60px;
+		width: 150px;
+	}
+	.button4{
+		margin-left: 460px;
+		height: 60px;
+		width: 150px;
+	}
+	.imgs{
+		width: 600px;
+		height:400px;
+		margin-top: 20px;
+		margin-left: 460px;
+	}
+	.kuai1{
+		margin-left: 460px;
+		border: 2px solid grey;
+		width: 600px;
+		height: 300px;
+	}
+	.kuai2{
+		margin-top: 20px;
+		margin-left: 460px;
+		border: 2px solid grey;
+		width: 600px;
+		height: 300px;
+	}
+	.kuai3{
+		height: 1700px;
+		width: 5px;
+		background: gray;
+        margin-top: -1100px;
+		margin-left: 1200px;
+	}
+	.test1{
+		margin-left:35px;
+		margin-top: 35px;
+		width: 350px;
+		height:220px;
+	}
+	.test2{
+		margin-left:35px;
+		margin-top: 35px;
+		width: 350px;
+		height:220px;
+	}
+	.labelOne{
+		margin-left: 10px;
+		font-size: 20px;
+		color: #061911;
+	}
+	#div_head{
+       margin-left: 1300px;
+		margin-top: -1700px;
+	}
+	.content{
+		margin-left: 1300px;
+		width: 1200px;
+		height: 700px;
+		white-space: normal;
+		font-size: 25px;
+	}
+	#imgs{
+		margin-top: 10px;
+		margin-left: 1300px;
+		width: 1200px;
+	}
 </style>

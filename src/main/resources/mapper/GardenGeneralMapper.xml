@@ -21,8 +21,6 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-
-
   <update id="updateByPrimaryKeySelective" parameterType="com.zutsg.pojo.GardenGeneral">
     update garden_general
     <set>

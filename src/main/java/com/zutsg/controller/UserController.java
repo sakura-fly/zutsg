@@ -75,7 +75,6 @@ public class UserController {
             if(StringUtils.isBlank(user.getPhone())||StringUtils.isBlank(user.getPassword())||user.getRole()==null){
                 return new ReturnDatas(ReturnDatas.ERROR,"注册失败，请你完善信息！");
             }
-            user.setStatus(1);
             List<User>  users=userSerive.selectByPhone(user.getPhone());
             if(users.size()>0&&users!=null){
                 return new ReturnDatas(ReturnDatas.ERROR,"该手机号已被注册！");
@@ -126,7 +125,7 @@ public class UserController {
                        } else if (users.get(0).getStatus() == 1) {
                            return new ReturnDatas(ReturnDatas.ERROR, "你的账号还在申请中！");
                        } else if (users.get(0).getStatus()==3) {
-                           return new ReturnDatas(ReturnDatas.ERROR, "你的账号还在申请中！\r\n"+users.get(0).getReason());
+                           return new ReturnDatas(ReturnDatas.ERROR, "你的账号还在申请中！\r\n"+users.get(0).getReason()==null?"":users.get(0).getReason());
                        }
                }else {
                    return new ReturnDatas(ReturnDatas.ERROR,"用户名或密码错误！");
