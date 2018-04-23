@@ -1,0 +1,61 @@
+
+/* 公共样式表 */
+
+html,body{ background:#fff;}
+html,body,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{font-weight:normal;}
+html,body,fieldset,iframe,abbr{border:0;}
+i,cite,em,var,address,dfn{font-style: normal;}
+[hidefocus],summary{outline:0;}
+ul , ol , ul li , li , ol li{list-style:none;}
+h2,h3,h4,h5,h6,small{font-size:100%;}
+sup,sub{font-size:83%;}
+pre,code,kbd,samp{font-family:inherit;}
+q:before,q:after{content:none;}
+textarea{overflow:auto;resize:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+h2,h3,h4,h5,h6,em,strong,b{font-weight:normal;}
+ins,u,s,a,a:hover{text-decoration:none;}
+body,textarea,input,button,select,keygen,legend{font-size:12px;color:#444 ;outline:0; border:0;}
+body{background:#fff;color:#444;}
+a{color:#444; border: none; text-decoration: none;outline:none; /*移除虚线框  IE8,FF有用*/ hide-focus: expression(this.hideFocus=true); /*IE6、IE7*/}
+a:focus{outline: 0;-moz-outline-style: none;}
+a:hover{text-decoration:none;}
+img{overflow: hidden;border: 0 none;}
+button,input,select,textarea{font-size:100%;font-family:tahoma;margin: 0;outline: 0 none;vertical-align: baseline;_overflow:visible;*vertical-align: middle;*overflow:visible;}
+
+
+/* 文字排版*/
+.block{ display:block !important;}
+.none{ display:none !important;}
+.cl{ clear:both; width:100%;}
+.f12{ font-size:12px;}.f13{ font-size:13px;}.f14{ font-size:14px;}.f16{ font-size:16px;}.f20{ font-size:20px;}
+.fb{ font-weight:bold;}.fn{ font-weight:bold;}
+.t2{ text-indent:2em;}
+.lh150{ line-height:150%;}.lh180{ line-height:180%;}.lh200{ line-height:200%;}
+.unl{ text-decoration:underline;}.nonl{ text-decoration:none;}
+.h50{ height:50px; clear:both; width:100%;}.h10{height:10px;}.h15{height:15px;}	
+
+/*定位*/
+.tl{ text-align:left;}.tr{ text-align:right;}.rc{ text-align:center;}
+.fl{ float:left; display:inline;}.fr{ float:right; display:inline;}
+.cb{ clear:both;}.cl{ clear:left;}.cr{ clear:right;}
+.vm{ vertical-align:middle;}
+.pr{ position:relative;}.pa{ position:absolute;}
+.vhidden{ visibility:hidden;}
+.none{ display:none;}
+
+/*边距*/
+.mt5{ margin-top:5px;}.mt10{ margin-top:10px;}.mt20{ margin-top:20px;}.mt30{ margin-top:30px;}.mt50{ margin-top:50px;}.mt100{ margin-top:100px;}
+.mb5{ margin-top:5px;}.mb10{ margin-top:10px;}.mb20{ margin-top:20px;}.mb30{ margin-top:30px;}.mb50{ margin-top:50px;}.mb100{ margin-top:100px;}
+.ml5{ margin-top:5px;}.ml10{ margin-top:10px;}.ml20{ margin-top:20px;}.ml30{ margin-top:30px;}.ml50{ margin-top:50px;}.ml100{ margin-top:100px;}
+.mr5{ margin-top:5px;}.mr10{ margin-top:10px;}.mr20{ margin-top:20px;}.mr30{ margin-top:30px;}.mr50{ margin-top:50px;}.mr100{ margin-top:100px;}
+.pt5{ margin-top:5px;}.pt10{ margin-top:10px;}.pt20{ margin-top:20px;}.pt30{ margin-top:30px;}.pt50{ margin-top:50px;}.pt100{ margin-top:100px;}
+.pb5{ margin-top:5px;}.pb10{ margin-top:10px;}.pb20{ margin-top:20px;}.pb30{ margin-top:30px;}.pb50{ margin-top:50px;}.pb100{ margin-top:100px;}
+.pl5{ margin-top:5px;}.pl10{ margin-top:10px;}.pl20{ margin-top:20px;}.pl30{ margin-top:30px;}.pl50{ margin-top:50px;}.pl100{ margin-top:100px;}
+.pr5{ margin-top:5px;}.pr10{ margin-top:10px;}.pr20{ margin-top:20px;}.pr30{ margin-top:30px;}.pr50{ margin-top:50px;}.pr100{ margin-top:100px;}
+
+

@@ -16,6 +16,16 @@ public class GardenNews {
 
     private String image;
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    private String title;
+
     public User getUser() {
         return user;
     }
@@ -47,12 +57,13 @@ public class GardenNews {
         this.createTime = createTime;
     }
 
-    public GardenNews(Integer id, String cotent, Integer isTop, Integer userId, String image,Date createTime) {
+    public GardenNews(Integer id, String cotent, Integer isTop, Integer userId, String image,Date createTime,String title) {
         this.id = id;
         this.cotent = cotent;
         this.isTop = isTop;
         this.userId = userId;
         this.image = image;
+        this.title = title;
         this.createTime = createTime;
     }
 

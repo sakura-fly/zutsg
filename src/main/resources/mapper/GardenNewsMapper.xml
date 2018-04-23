@@ -9,10 +9,11 @@
       <arg column="userId" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="image" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="createTime" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, cotent, isTop, userId, image,createTime
+    id, cotent, isTop, userId, image,createTime,title
   </sql>
 
   <select id="selectByNews" parameterType="com.zutsg.pojo.GardenNews" resultMap="BaseResultMap">
@@ -34,6 +35,9 @@
     <if test="userId != null">
       and userId=#{userId,jdbcType=INTEGER}
     </if>
+    <if test="title != null">
+      and title=#{title,jdbcType=VARCHAR}
+    </if>
   </select>
   <select id="selectByNewsPage" parameterType="com.zutsg.pojo.GardenNews" resultMap="BaseResultMap">
     select
@@ -53,6 +57,9 @@
     </if>
     <if test="userId != null">
       and userId=#{userId,jdbcType=INTEGER}
+    </if>
+    <if test="title != null">
+      and title=#{title,jdbcType=VARCHAR}
     </if>
     limit ${pageBean.page},${pageBean.pageSize}
   </select>
@@ -89,6 +96,9 @@
       <if test="createTime != null">
      createTime,
       </if>
+      <if test="title != null">
+        title,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -109,6 +119,9 @@
       <if test="createTime != null">
         #{createTime,jdbcType=INTEGER},
       </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zutsg.pojo.GardenNews">
@@ -128,6 +141,9 @@
       </if>
       <if test="createTime != null">
          createTime=#{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title= #{title,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
