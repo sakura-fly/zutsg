@@ -17,8 +17,8 @@
 <ul class="nnav layui-nav layui-bg-blue" lay-filter="">
     <div align="center">
         <li class="rl layui-nav-item"><a href="javascript:window.location.href='mindex.html'">园区概况</a></li>
-        <li class="rl layui-nav-item layui-this"><a href="javascript:window.location.href='news.html';">园区新闻</a></li>
-        <li class="rl layui-nav-item"><a href="javascript:window.location.href='interspace.html';">园区服务</a></li>
+        <li class="rl layui-nav-item "><a href="javascript:window.location.href='news.html';">园区新闻</a></li>
+        <li class="rl layui-nav-item layui-this"><a href="javascript:window.location.href='interspace.html';">园区服务</a></li>
         <li class="rl layui-nav-item"><a href="javascript:;">众创空间</a></li>
         <li class="rl layui-nav-item"><a href="javascript:;">科技成果</a></li>
         <li class="rl layui-nav-item"><a href="javascript:;">入住申请</a></li>
@@ -36,24 +36,28 @@
 <div class="content zhong">
     <div class="left_content">
         <div class="nav_tit">
-            <h1>新闻中心</h1>
-            <h2>the news center</h2>
+            <h1>空间中心</h1>
+            <h2>the space center</h2>
         </div>
         <div class="nav_content">
             <ul>
-                <li><a><h1>新闻摘要</h1></a></li>
-                <li style="height:500px;background:#528078;color: #f7fbff;padding-left:10px;padding-right:10px;text-indent: 2em;font-family: '微软雅黑', '宋体'"> 新闻，是指报纸、电台、电视台、互联网等媒体经常使用的记录与传播信息的一种文体。是记录社会、传播信息、反映时代的一种文体。新闻概念有广义与狭义之分。广义上：除了发表于报刊、广播、互联网、电视上的评论与专文外的常用文本都属于新闻，包括消息、通讯、特写、速写（有的将速写纳入特写之列）等等；狭义上：消息是用概括的叙述方式，以较简明扼要的文字，迅速及时地报道附近新近发生的、有价值的事实，使一定人群了解。新闻一般包括标题、导语、主体、背景和结语五部分。前三者是主要部分，后二者是辅助部分。写法以叙述为主兼或有议论、描写、评论等。新闻是包含海量资讯的新闻服务平台,真实反映每时每刻的重要事件。</li>
+                <li><a><h1>空间介绍</h1></a></li>
+                <li style="height:300px;background:#528078;color: #f7fbff;padding-left:10px;padding-right:10px;text-indent: 2em;font-family: '微软雅黑', '宋体'">
+                这里是空间介绍
+                </li>
+            </ul>
             </ul>
         </div>
     </div>
 
     <div class="right_content">
         <div class="item">
-            <h1>新闻中心 / <span>the news center</span></h1>
+            <h1>空间中心 / <span>the space center</span></h1>
             <h2><a href="#"></a></h2>
             <div class="cb"></div>
         </div>
         <div class="news_text">
+
      <div id="content">
 
 
@@ -65,19 +69,10 @@
             <div class="cb"></div>
         </div>
     </div>
-
     <div class="cb"></div>
 </div>
-
-
-<!--<form action="file/upload.spring" method="post" enctype="multipart/form-data">
-    <label>用户名：</label><input type="text" name="name"/><br/>
-    <label>密 码：</label><input type="password" name="password"/><br/>
-    <label>头 像</label><input type="file" name="file"/><br/>
-    <input type="submit" value="提  交"/>
-</form>-->
-
 <iframe src="foot.html" width="100%" height="300px" scrolling="no"  frameborder="0" style="margin-top: 50px"></iframe>
+
 </body>
 </html>
 <script type="text/javascript">
@@ -97,7 +92,7 @@
     gettable();
     function gettable() {
         $.ajax({
-            url: 'gardenNews/listPage.spring',
+            url: 'intersapce/listPage.spring',
             // type: 'default GET (Other values: POST)',
             dataType: 'json',
             data: {pageIndex: pagenum},
@@ -154,10 +149,10 @@
        if(data[i].title!=undefined){
            title=data[i].title
        }
-         if(data[i].cotent!=undefined){
-             contents=data[i].cotent;
-             content=data[i].cotent;
-           if(data[i].cotent.split("").length>40){
+         if(data[i].content!=undefined){
+             contents=data[i].content;
+             content=data[i].content;
+           if(data[i].content.split("").length>40){
                content=data[i].cotent.substring(0,40);
            }
 
@@ -165,7 +160,7 @@
         html=html+"<div class='xwzx2_content'><div class='xwzx2_date'> <h3>"+day+"</h3><h5>"+yearMonth+"</h5>" +
             " </div> <div class='xwzx2_shuxian' id='xw"+id+"'></div> <div  class='xwzx2_text' id='xws"+id+"'> <h2 style='height: 30px'>"+title+"  <button class='layui-btn layui-btn-xs layui-btn-radius layui-btn-normal' style='text-align: right' onclick='newsDetail("+id+","+time+",\""+name+"\")'" +
             " id='btn"+id+"'>展开...</button></h2>  <p id='p"+id+"'>"+content+"</p><p id='ps"+id+"' style='display: none'>"+contents+"</p><h2 style='display: none' id='user"+id+"' style='font-size: 15px;color: gray'></h2><h2 style='display: none' id='h2"+id+"' style='font-size: 15px;color: gray'></h2> </div> <div class='cb'></div></div>";
-            " id='btn"+id+"'>展开...</button></h2>  <p id='p"+id+"'>"+content+"</p><h2 style='display: none' id='user"+id+"' style='font-size: 15px;color: gray'></h2><h2 style='display: none' id='h2"+id+"' style='font-size: 15px;color: gray'></h2></div> <div class='cb'> <img src='img/zan3.png' style='width: 30px;height: 20px'></div></div>";
+            " id='btn"+id+"'>展开...</button></h2>  <p id='p"+id+"'>"+content+"</p><h2 style='display: none' id='user"+id+"' style='font-size: 15px;color: gray'></h2><h2 style='display: none' id='h2"+id+"' style='font-size: 15px;color: gray'></h2> </div> <div class='cb'></div></div>";
 
   }
 $('#content').html(html);
@@ -203,8 +198,6 @@ function small(id,time,name) {
     $("#btn"+id).attr("onclick","newsDetail("+id+","+time+",\""+name+"\")");
 
 }
-
-
 
 
 

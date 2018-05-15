@@ -41,6 +41,11 @@ public class UserController {
                 returnDatas.setPageBean(pageBeanResult);
             }
             List<User> userList=userSerive.selectByUserPage(user);
+            for (User data:userList){
+                if (data!=null){
+                    data.setPassword("***********");
+                }
+            }
             returnDatas.setData(userList);
         }catch (Exception e){
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
@@ -57,6 +62,11 @@ public class UserController {
         ReturnDatas returnDatas= ReturnDatas.getSuccessReturnDatas();
         try {
             List<User> userList=userSerive.selectByUser(user);
+            for (User data:userList){
+                if (data!=null){
+                    data.setPassword("***********");
+                }
+            }
             returnDatas.setData(userList);
         }catch (Exception e){
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
@@ -77,8 +87,10 @@ public class UserController {
             }
             List<User>  users=userSerive.selectByPhone(user.getPhone());
             if(users.size()>0&&users!=null){
+                users.get(0).setPassword("");
                 return new ReturnDatas(ReturnDatas.ERROR,"该手机号已被注册！");
             }
+            user.setStatus(1);
             userSerive.insertSelective(user);
         }catch (Exception e){
             return new ReturnDatas(ReturnDatas.ERROR,"操作失败了");
@@ -119,6 +131,7 @@ public class UserController {
            if(userList.size()>0&&userList!=null){
                List<User> users=userSerive.selectByUser(user);
                if (users.size()>0&&users!=null){
+                          users.get(0).setPassword("");
                        if (users.get(0).getStatus() == 2) {
                            request.getSession().setAttribute("userSession", users.get(0));
                            returnDatas.setData(users.get(0));
@@ -126,6 +139,8 @@ public class UserController {
                            return new ReturnDatas(ReturnDatas.ERROR, "你的账号还在申请中！");
                        } else if (users.get(0).getStatus()==3) {
                            return new ReturnDatas(ReturnDatas.ERROR, "你的账号还在申请中！\r\n"+users.get(0).getReason()==null?"":users.get(0).getReason());
+                       } else if (users.get(0).getStatus()==0){
+                           return new ReturnDatas(ReturnDatas.ERROR, "非法用户！");
                        }
                }else {
                    return new ReturnDatas(ReturnDatas.ERROR,"用户名或密码错误！");
@@ -221,4 +236,8 @@ public class UserController {
         }
         return returnDatas;
     }
+
+
+
+
 }
