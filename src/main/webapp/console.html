@@ -3,11 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>控制台</title>
+    <script src="libs/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="libs/layui/layui.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="libs/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="libs/css/bootstrap.min.css">
 </head>
 <body>
-<script src="libs/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-<script src="libs/layui/layui.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="libs/layui/css/layui.css">
-<link rel="stylesheet" type="text/css" href="libs/css/bootstrap.min.css">
+<div class="">
+    <div class="col-lg-2" style="margin-top: 123px;">
+        <ul class="list-group">
+            <li class="list-group-item uu" id="useradmin">用户审核</li>
+            <li class="list-group-item uu">新闻发布</li>
+        </ul>
+    </div>
+    <div id="content" class="col-lg-10" style="margin-top: 66px;">
+
+    </div>
+</div>
+
 </body>
 </html>
+<script type="text/javascript">
+    $(".uu").click(function () {
+        $(".uu.active").removeClass("active");
+        $(this).addClass("active")
+        $("#content").load($(this).attr("id") + ".html")
+        console.log($(this).attr("id") + ".html")
+    });
+
+    $("#useradmin").click();
+
+</script>
