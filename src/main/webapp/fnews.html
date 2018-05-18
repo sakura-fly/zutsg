@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布新闻</title>
+    <script src="libs/js/js.cookie.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="form-group">
+        <label for="title">标题</label>
+        <input type="email" class="form-control" id="title" placeholder="标题">
+    </div>
+    <div class="form-group">
+        <label for="content">内容</label>
+        <textarea class="form-control" rows="3" id="content" placeholder="内容"></textarea>
+    </div>
+    <button class="btn btn-success  form-control" id="tj">提交</button>
+
+    <table class="layui-table" id="newstb" lay-filter="newstb">
+
+    </table>
+    <div id="pagen">
+
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    layui.use(['table','laypage'], function () {
+
+
+        table = layui.table;
+        laypage = layui.laypage;
+
+        table.render({
+            elem: '#newstb',
+            url: 'gardenNews/listPage.spring',
+            method: 'post',
+            // page: true,
+            request: {
+                pageName: 'pageIndex' //页码的参数名称，默认：page
+                , limitName: 'pageSize' //每页数据量的参数名，默认：limit
+            },
+            response: {
+                statusName: 'statusCode' //数据状态的字段名称，默认：code
+                ,statusCode: 200 //成功的状态码，默认：0
+                ,msgName: 'message' //状态信息的字段名称，默认：msg
+                // ,countName: ['pageBean','count'] //数据总数的字段名称，默认：count
+                // ,dataName: 'data' //数据列表的字段名称，默认：data
+            },
+            done: function(res, curr, count){
+                // alert(curr + "," + res.pageBean.count)
+                laypage.render({
+                    elem: 'pagen',
+                    count: res.pageBean.count,
+                    curr:res.pageBean.pageIndex,
+                    jump: function(obj, first){
+                        if(!first){
+                            // pagenum = obj.curr;
+                            // gettable()
+                            table.reload("newstb",{
+                                where:{
+                                    pageIndex: obj.curr
+                                }
+                            })
+                        }
+                    }
+                });
+                //如果是异步请求数据方式，res即为你接口返回的信息。
+                //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+                // console.log(res);
+                //
+                // //得到当前页码
+                // console.log(curr);
+                //
+                // //得到数据总量
+                // console.log(count);
+            },
+            cols: [[
+                {field: 'title', title: '标题'},
+                {field: 'cotent', title: '内容'},
+                {
+                    field: 'publisher', title: '发布者', templet: function (d) {
+                        return d.user.name;
+                    }
+                },
+                // {field: 'edition', title: '版次'},
+                // {field: 'num', title: '数量',},
+                // {fixed: 'right', width: 200, align: 'center', toolbar: '#barDemo', title: '操作'}
+            ]]
+
+
+        });
+    });
+</script>
