@@ -59,11 +59,16 @@
                 data: {phone: username,password:pwd},
             })
             .done(function(e) {
-                // console.log(e);
+                console.log(e);
                 if (e.status == "error") {
                     alert(e.message);
                 } else {
-                	window.location.href = "mindex.html";
+                    if (e.data.role == 3) {
+                        window.location.href = "console.html";
+                    } else {
+                        window.location.href = "mindex.html";
+                    }
+
                 }
             })
             .fail(function() {
