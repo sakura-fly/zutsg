@@ -12,8 +12,8 @@
         <input type="email" class="form-control" id="title" placeholder="标题">
     </div>
     <div class="form-group">
-        <label for="content">内容</label>
-        <textarea class="form-control" rows="3" id="content" placeholder="内容"></textarea>
+        <label for="ncontent">内容</label>
+        <textarea class="form-control" rows="3" id="ncontent" placeholder="内容"></textarea>
     </div>
     <button class="btn btn-success  form-control" id="tj">提交</button>
 
@@ -27,6 +27,35 @@
 </body>
 </html>
 <script type="text/javascript">
+    var cu = Cookies.get("user");
+    var u = JSON.parse(cu);
+
+    $("#tj").click(function () {
+        console.log($("#ncontent"))
+        var data = {
+            title:$("#title").val(),
+            cotent:$("#ncontent").val(),
+            userId:u.id
+        }
+        $.ajax({
+            url: 'gardenNews/add.spring',
+            type: 'post',
+            dataType: 'json',
+            data: data,
+        })
+        .done(function(e) {
+            console.log("success");
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+        
+    });
+
+
     layui.use(['table','laypage'], function () {
 
 
