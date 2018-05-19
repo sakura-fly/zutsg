@@ -96,6 +96,10 @@
                 },
             })
                 .done(function (e) {
+                    alert(e.message);
+                    if (e.status == "success") {
+                        location.reload();
+                    }
                     console.log("success");
                 })
                 .fail(function () {
