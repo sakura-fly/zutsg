@@ -92,10 +92,10 @@
   </delete>
   <insert id="insert" parameterType="com.zutsg.pojo.Interspace">
     insert into interspace (id, title, image, 
-      cotent, address, topNum,userId
+      content, address, topNum,userId
       )
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
-      #{cotent,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{topNum,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}
+      #{content,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{topNum,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.zutsg.pojo.Interspace">
@@ -110,8 +110,8 @@
       <if test="image != null">
         image,
       </if>
-      <if test="cotent != null">
-        cotent,
+      <if test="content != null">
+        content,
       </if>
       <if test="address != null">
         address,
@@ -136,8 +136,8 @@
       <if test="image != null">
         #{image,jdbcType=VARCHAR},
       </if>
-      <if test="cotent != null">
-        #{cotent,jdbcType=VARCHAR},
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
       </if>
       <if test="address != null">
         #{address,jdbcType=VARCHAR},
@@ -162,8 +162,8 @@
       <if test="image != null">
         image = #{image,jdbcType=VARCHAR},
       </if>
-      <if test="cotent != null">
-        cotent = #{cotent,jdbcType=VARCHAR},
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
       </if>
       <if test="address != null">
         address = #{address,jdbcType=VARCHAR},
@@ -184,7 +184,7 @@
     update interspace
     set title = #{title,jdbcType=VARCHAR},
       image = #{image,jdbcType=VARCHAR},
-      cotent = #{cotent,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       topNum = #{topNum,jdbcType=INTEGER},
        userId = #{userId,jdbcType=INTEGER},
