@@ -189,9 +189,14 @@ img{ display:block;}
 .xwzx2_content:hover .xwzx2_date > h3{ background-color:#2bb2ff;}
 .xwzx2_shuxian{ width:1px; height:80px; background-color:#000;float:left; margin-top:20px; margin-left:20px;}
 .xwzx2_text{ float:right; width:744px; }
+
 .xwzx2_text h2{font-size:18px; margin-top:20px; height:20px; overflow:hidden; color:#333; line-height:18px;}
 .xwzx2_text:hover h2{color:#027ec5;}
 .xwzx2_text p{font-size:14px;font-family:"宋体";line-height:24px; margin-top:16px; height:48px; overflow:hidden;}
+.xwzx2_textsp{  width:744px; }
+.xwzx2_textsp h2{font-size:18px; margin-top:20px; height:20px; overflow:hidden; color:#333; line-height:18px;}
+.xwzx2_textsp:hover h2{color:#027ec5;}
+.xwzx2_textsp p{font-size:14px;font-family:"宋体";line-height:24px; margin-top:16px; height:48px; overflow:hidden;}
 
 /*终端页*/
 .content_last{ width:900px; border:solid 1px #666; padding-top:20px; text-align:center; box-sizing:border-box; }
