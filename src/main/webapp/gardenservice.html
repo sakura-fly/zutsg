@@ -39,93 +39,25 @@
 <div class="content zhong">
     <div class="left_content">
         <div class="nav_tit">
-            <h1>空间中心</h1>
-            <h2>the space center</h2>
+            <h1>园区服务</h1>
+            <h2>the garden garden</h2>
         </div>
         <div class="nav_content">
             <ul>
-                <li><a><h1>科技成果</h1></a></li>
+                <li><a><h1>园区服务</h1></a></li>
                 <li style="height:300px;background:#528078;color: #f7fbff;padding-left:10px;padding-right:10px;text-indent: 2em;font-family: '微软雅黑', '宋体'">
-                    展示各种厉害的科技成果
+                    为人民服务
                 </li>
-                <li><a id="mtk"><h1>发布科技成果</h1></a></li>
             </ul>
             </ul>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         style="margin-top: 200px;">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">发布科技成果</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="title">标题</label>
-                        <input type="text" class="form-control" id="title" placeholder="标题">
-                    </div>
-                    <div class="form-group">
-                        <label for="title">内容</label>
-                        <textarea class="form-control" rows="3" id="icontent" placeholder="内容"></textarea>
-                    </div>
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" id="fb">发布</button>
-                </div>
-            </div>
         </div>
     </div>
     <script type="text/javascript">
 
-        $("#fb").click(function () {
-            $.ajax({
-                url: 'intersapce/add.spring',
-                type: 'post',
-                dataType: 'json',
-                data: {
-                    title: $("#title").val(),
-                    content: $("#icontent").val(),
-                    userId: u.id
-                },
-            })
-                .done(function (e) {
-                    alert(e.message);
-                    if (e.status == "success") {
-                        location.reload();
-                    }
-                    console.log("success");
-                })
-                .fail(function () {
-                    console.log("error");
-                })
-                .always(function () {
-                    console.log("complete");
-                });
-
-        });
-        var u ;
-        $("#mtk").click(function () {
-            var cu = Cookies.get("user");
-            console.log(cu)
-            if (cu) {
-               u = JSON.parse(cu);
-                $('#myModal').modal('show')
-            } else {
-                alert("请登录")
-            }
-
-        });
     </script>
     <div class="right_content">
         <div class="item">
-            <h1>空间中心 / <span>the space center</span></h1>
+            <h1>园区服务 / <span>the garden service</span></h1>
             <h2><a href="#"></a></h2>
             <div class="cb"></div>
         </div>
@@ -161,120 +93,6 @@
             , arrow: 'always' //始终显示箭头
         });
     });
-    var pagenum = 1;
-    gettable();
-
-    function gettable() {
-        $.ajax({
-            url: 'intersapce/listPage.spring',
-            // type: 'default GET (Other values: POST)',
-            dataType: 'json',
-            data: {pageIndex: pagenum},
-        })
-            .done(function (e) {
-                var data = e.data;
-                getInfo(data);
-                layui.use('laypage', function () {
-                    var laypage = layui.laypage;
-
-                    //执行一个laypage实例
-                    laypage.render({
-                        elem: 'new_page',
-                        count: e.pageBean.count,
-                        curr: pagenum,
-                        jump: function (obj, first) {
-
-                            if (!first) {
-                                pagenum = obj.curr;
-                                gettable()
-                            }
-                        }
-                    });
-                });
-            })
-            .fail(function () {
-                console.log("error");
-            })
-            .always(function () {
-                console.log("complete");
-            });
-    }
-
-    function getInfo(data) {
-        var time;
-        var yearMonth = "";
-        var day = "";
-        var html = "";
-        var title = "";
-        var content = "";
-        var contents = "";
-        var name = "";
-        var id;
-        for (var i = 0; i < data.length; i++) {
-            id = data[i].id;
-            if (data[i].createTime != undefined) {
-                time = data[i].createTime;
-                yearMonth = getTime(data[i].createTime).split("/")[0] + "-" + getTime(data[i].createTime).split("/")[1];
-                day = getTime(data[i].createTime).split("/")[2].split(" ")[0];
-            }
-            if (data[i].user != undefined) {
-                name = data[i].user.name;
-            }
-            if (data[i].title != undefined) {
-                title = data[i].title
-            }
-            if (data[i].content != undefined) {
-                contents = data[i].content;
-                content = data[i].content;
-                if (data[i].content.split("").length > 40) {
-                    content = data[i].cotent.substring(0, 40);
-                }
-
-            }
-            html = html + "<div class='xwzx2_content'><div class='xwzx2_date'> <h3>" + day + "</h3><h5>" + yearMonth + "</h5>" +
-                " </div> <div class='xwzx2_shuxian' id='xw" + id + "'></div> <div  class='xwzx2_text' id='xws" + id + "'> <h2 style='height: 30px'>" + title + "  <button class='layui-btn layui-btn-xs layui-btn-radius layui-btn-normal' style='text-align: right' onclick='newsDetail(" + id + "," + time + ",\"" + name + "\")'" +
-                " id='btn" + id + "'>展开...</button></h2>  <p id='p" + id + "'>" + content + "</p><p id='ps" + id + "' style='display: none'>" + contents + "</p><h2 style='display: none' id='user" + id + "' style='font-size: 15px;color: gray'></h2><h2 style='display: none' id='h2" + id + "' style='font-size: 15px;color: gray'></h2> </div> <div class='cb'></div></div>";
-            " id='btn" + id + "'>展开...</button></h2>  <p id='p" + id + "'>" + content + "</p><h2 style='display: none' id='user" + id + "' style='font-size: 15px;color: gray'></h2><h2 style='display: none' id='h2" + id + "' style='font-size: 15px;color: gray'></h2> </div> <div class='cb'></div></div>";
-
-        }
-        $('#content').html(html);
-
-    }
-
-    function getTime(time) {
-        var unixTimestamp = new Date(time);
-        commonTime = unixTimestamp.toLocaleString();
-        return commonTime;
-    }
-
-    function newsDetail(id, time, name) {
-        $('#h2' + id).show();
-        $('#p' + id).hide();
-        $('#ps' + id).show();
-        $('#user' + id).show();
-        $('#h2' + id).html("发布时间：" + getTime(time));
-
-        $('#h2' + id).css("font-size", "15px");
-        $('#h2' + id).css("color", "gray");
-        $('#user' + id).css("font-size", "15px");
-        $('#user' + id).css("color", "gray");
-        $('#user' + id).html("发布人:" + name);
-        var h = $("#xws" + id).outerHeight(true);
-        $("#xw" + id).css("height", h - 26 + "px");
-        $("#btn" + id).html("收起...");
-        $("#btn" + id).attr("onclick", "small(" + id + "," + time + ",\"" + name + "\")");
-    }
-
-    function small(id, time, name) {
-        $('#p' + id).show();
-        $('#ps' + id).hide()
-        $('#h2' + id).hide();
-        $('#user' + id).hide();
-        $("#xw" + id).css("height", 80 + "px");
-        $("#btn" + id).html("展开...");
-        $("#btn" + id).attr("onclick", "newsDetail(" + id + "," + time + ",\"" + name + "\")");
-
-    }
 
 
 </script>
