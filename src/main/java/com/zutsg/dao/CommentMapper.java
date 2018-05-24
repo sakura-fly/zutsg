@@ -1,8 +1,10 @@
 package com.zutsg.dao;
 
 import com.zutsg.pojo.Comment;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 
 public interface CommentMapper {
     int deleteByPrimaryKey(Integer id);

@@ -13,13 +13,15 @@
       <arg column="image" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="header" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="message" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="time" jdbcType="DATE" javaType="java.util.Date" />
     </constructor>
   </resultMap>
 
 
 
   <sql id="Base_Column_List" >
-    id, role, phone, status, reason, info, password, image, header, name
+    id, role, phone, status, reason, info, password, image, header, name,message,time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -218,7 +220,12 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-
+      <if test="message != null" >
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=DATE},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>

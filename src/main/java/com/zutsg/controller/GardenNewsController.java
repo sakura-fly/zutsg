@@ -32,6 +32,13 @@ public class GardenNewsController {
         ReturnDatas returnDatas= ReturnDatas.getSuccessReturnDatas();
 
         try {
+            System.out.println(new Date().getTime()+"-----------------------");
+            if (gardenNews.getTime() !=null){
+
+                Date date=new Date();
+                date.setTime(gardenNews.getTime());
+                gardenNews.setCreateTime(date);
+            }
             if(pageBean!=null){
                 List<GardenNews> gardenNewsList=gardenNewsService.selectByNews(gardenNews);
                 pageBean.setCount(gardenNewsList.size());

@@ -16,6 +16,16 @@ public class GardenNews {
 
     private String image;
 
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
+    }
+
+    private Long time;
+
     public String getTitle() {
         return title;
     }
@@ -48,7 +58,6 @@ public class GardenNews {
 
     private Date createTime;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getCreateTime() {
         return createTime;
     }

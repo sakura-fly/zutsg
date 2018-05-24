@@ -38,6 +38,9 @@
     <if test="title != null">
       and title=#{title,jdbcType=VARCHAR}
     </if>
+    <if test="createTime != null">
+      and createTime &gt;=#{createTime,jdbcType=DATE}
+    </if>
   </select>
   <select id="selectByNewsPage" parameterType="com.zutsg.pojo.GardenNews" resultMap="BaseResultMap">
     select
@@ -61,6 +64,9 @@
     <if test="title != null">
       and title=#{title,jdbcType=VARCHAR}
     </if>
+    <if test="createTime != null">
+    and createTime &gt;=#{createTime,jdbcType=DATE}
+  </if>
     limit ${pageBean.page},${pageBean.pageSize}
   </select>
 
@@ -97,7 +103,13 @@
      createTime,
       </if>
       <if test="title != null">
-        title,
+      title,
+    </if>
+      <if test="message != null">
+        message,
+      </if>
+      <if test="time != null">
+        time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -122,6 +134,12 @@
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
       </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=DATE},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zutsg.pojo.GardenNews">
@@ -144,6 +162,12 @@
       </if>
       <if test="title != null">
         title= #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=DATE},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

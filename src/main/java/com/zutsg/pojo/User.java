@@ -2,6 +2,8 @@ package com.zutsg.pojo;
 
 import com.zutsg.unti.PageBean;
 
+import java.util.Date;
+
 public class User {
     private Integer id;
 
@@ -25,7 +27,11 @@ public class User {
 
     private PageBean pageBean;
 
-    public User(Integer id, Integer role, String phone, Integer status, String reason, String info, String password, String image, String header, String name) {
+    private String message;
+
+    private Date time;
+
+    public User(Integer id, Integer role, String phone, Integer status, String reason, String info, String password, String image, String header, String name,String message,Date time) {
         this.id = id;
         this.role = role;
         this.phone = phone;
@@ -36,6 +42,8 @@ public class User {
         this.image = image;
         this.header = header;
         this.name = name;
+        this.message = message;
+        this.time = time;
     }
 
     public User() {
@@ -116,6 +124,22 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     public void setName(String name) {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -90,6 +91,7 @@ public class UserController {
                 users.get(0).setPassword("");
                 return new ReturnDatas(ReturnDatas.ERROR,"该手机号已被注册！");
             }
+            user.setTime(new Date());
             user.setStatus(1);
             userSerive.insertSelective(user);
         }catch (Exception e){
