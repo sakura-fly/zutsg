@@ -39,10 +39,6 @@
 
 
 
-
-
-
-
   <select id="selectByUserPage" resultMap="BaseResultMap" parameterType="com.zutsg.pojo.User" >
     select
     <include refid="Base_Column_List" />
@@ -154,7 +150,12 @@
       <if test="name != null" >
         name,
       </if>
-
+      <if test="message != null" >
+        message,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -187,7 +188,12 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=DATE},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zutsg.pojo.User" >

@@ -44,6 +44,7 @@
     <if test="type != null">
       and type=#{type,jdbcType=INTEGER}
     </if>
+    order by id desc
   </select>
 
   <select id="selectByCommentPage" parameterType="com.zutsg.pojo.Interspace" resultMap="BaseResultMap">
@@ -68,7 +69,7 @@
     <if test="type != null">
       and type=#{type,jdbcType=INTEGER}
     </if>
-    limit ${pageBean.page},${pageBean.pageSize}
+    order by id desc limit ${pageBean.page},${pageBean.pageSize}
   </select>
 
 

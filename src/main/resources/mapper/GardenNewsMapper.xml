@@ -8,7 +8,7 @@
       <arg column="isTop" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="userId" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="image" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="createTime" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
@@ -39,8 +39,9 @@
       and title=#{title,jdbcType=VARCHAR}
     </if>
     <if test="createTime != null">
-      and createTime &gt;=#{createTime,jdbcType=DATE}
+      and createTime &gt;#{createTime,jdbcType=TIMESTAMP}
     </if>
+    order by id desc
   </select>
   <select id="selectByNewsPage" parameterType="com.zutsg.pojo.GardenNews" resultMap="BaseResultMap">
     select
@@ -65,9 +66,9 @@
       and title=#{title,jdbcType=VARCHAR}
     </if>
     <if test="createTime != null">
-    and createTime &gt;=#{createTime,jdbcType=DATE}
+    and createTime &gt;#{createTime,jdbcType=TIMESTAMP}
   </if>
-    limit ${pageBean.page},${pageBean.pageSize}
+    order by id desc limit ${pageBean.page},${pageBean.pageSize}
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -105,12 +106,7 @@
       <if test="title != null">
       title,
     </if>
-      <if test="message != null">
-        message,
-      </if>
-      <if test="time != null">
-        time,
-      </if>
+
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -129,17 +125,12 @@
         #{image,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
-        #{createTime,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
       </if>
-      <if test="message != null">
-        #{message,jdbcType=VARCHAR},
-      </if>
-      <if test="time != null">
-        #{time,jdbcType=DATE},
-      </if>
+
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zutsg.pojo.GardenNews">
@@ -158,17 +149,12 @@
         image = #{image,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
-         createTime=#{createTime,jdbcType=INTEGER},
+         createTime=#{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="title != null">
         title= #{title,jdbcType=VARCHAR},
       </if>
-      <if test="message != null">
-        #{message,jdbcType=VARCHAR},
-      </if>
-      <if test="time != null">
-        #{time,jdbcType=DATE},
-      </if>
+
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>

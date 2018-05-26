@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Created by Administrator on 2018/4/7 0007.
@@ -32,9 +34,7 @@ public class GardenNewsController {
         ReturnDatas returnDatas= ReturnDatas.getSuccessReturnDatas();
 
         try {
-            System.out.println(new Date().getTime()+"-----------------------");
             if (gardenNews.getTime() !=null){
-
                 Date date=new Date();
                 date.setTime(gardenNews.getTime());
                 gardenNews.setCreateTime(date);
@@ -59,6 +59,14 @@ public class GardenNewsController {
     ReturnDatas list(GardenNews gardenNews, PageBean pageBean, HttpServletRequest request, HttpServletResponse response){
         ReturnDatas returnDatas= ReturnDatas.getSuccessReturnDatas();
         try {
+            if (gardenNews.getTime() !=null){
+                Date date=new Date();
+                date.setTime(gardenNews.getTime());
+                gardenNews.setCreateTime(date);
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String dateString = formatter.format(gardenNews.getCreateTime());
+                System.out.println("时间为："+dateString+"----毫秒值："+gardenNews.getTime());
+            }
             List<GardenNews> gardenNewsList=gardenNewsService.selectByNews(gardenNews);
             returnDatas.setData(gardenNewsList);
         }catch (Exception e){
